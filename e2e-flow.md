@@ -1,5 +1,4 @@
-
-##### Entities
+### Entities
 
 * Table surface with a grid of X,Y coordinates
 * Dot - logical point with X,Y coordinates on a surface
@@ -11,13 +10,13 @@
 * Player - a human
 * Client - a browser or mobile app
 * Tick - a time quant to detect the motion of a Striker
-* Sequence - an incremental int sent along with every clinet event to the server 
+* Sequence - an incremental int sent along with every clinet event to the server
 
-##### Data types:
+### Data types:
 playerId, gameId - UUID
 X,Y,speed,time,angle, sequence - int
 
-##### Events:
+### Events:
 
 * Hello: `{"hello":playerId}`
 * Join game: `{"join": gameId}`
@@ -38,7 +37,7 @@ X,Y,speed,time,angle, sequence - int
 
 A collision of a puck with a side is not an event, it is a computable vector of a puck motion.
 
-##### Data flow sequence
+### Data flow sequence
 
 1. Client connects
 1. Client sends a "Hello" event

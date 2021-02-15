@@ -13,9 +13,9 @@
 * Sequence - an incremental int sent along with every clinet event to the server
 
 ### Data types:
-playerId, gameId - UUID
+`playerId`, `gameId` - UUID
 
-X,Y,speed,time,angle, sequence - int
+`X`,`Y`,`speed`,`time`,`angle`, `sequence` - int
 
 ### Events:
 

@@ -49,11 +49,11 @@ A collision of a puck with a side is not an event, it is a computable vector of 
 1. Server sends "start"
    - client starts tracking Puck movements
 1. A striker changes position on a surface from a dot [X1,Y1] to another dot [X2,Y2].
-  - once per [tick] ms client detects position change
-  - sequence is incremented
-  - Client sends the "motion" event to the server
-  - Server does not respond to the "motion" messages
+   - once per [tick] ms client detects position change
+   - sequence is incremented
+   - Client sends the "motion" event to the server
+   - Server does not respond to the "motion" messages
 1. Server buffers motion events from a Client
    - duting N milliseconds "motion" events are kept in a server
-  - if a motion leads to sending a puck to another part of a table the buffered motion events are sent to another player instantly  
+   - if a motion leads to sending a puck to another part of a table the buffered motion events are sent to another player instantly  
 1. Another client receives the pack of the motion events and draws them on a screen

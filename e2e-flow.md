@@ -14,6 +14,7 @@
 
 ### Data types:
 playerId, gameId - UUID
+
 X,Y,speed,time,angle, sequence - int
 
 ### Events:

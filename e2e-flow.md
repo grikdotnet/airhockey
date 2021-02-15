@@ -28,11 +28,11 @@
   X2,Y2 are new coordinates
   T is milliseconds
 * Collision of a striker with a puck
-  `{"hit":[X,Y,angle,speed]}`
+  `{"hit":[X,Y,angle,speed],"sequence": sequence}`
   X,Y - coordinates of a puck
   angle - angle of the new vector of the puck motion
   speed - speed pixels/sec
-* Goal: `{"goal":playerId}`
+* Goal: `{"goal":playerId,"sequence": sequence}`
   playerId - the ID of the player the hole belongs to
 
 

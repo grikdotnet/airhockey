@@ -1,5 +1,6 @@
 import { makeAutoObservable, autorun } from "mobx";
-import Disc from "../../models/Disc";
+import Handle from "../../models/Handle";
+import Puck from "../../models/Puck";
 
 class GameBoard {
 
@@ -15,10 +16,9 @@ class GameBoard {
     width = 0;
     height = 0;
 
-    puck = new Disc( this );
+    puck = new Puck( this );
 
-    handle1 = new Disc( this );
-    handle2 = new Disc( this );
+    handles = Array.from({ length: 2 }, () => new Handle( this ));
 
     initializeCanvas = el => {
         this.canvas = el;
@@ -38,8 +38,8 @@ class GameBoard {
         const halfHeight = Math.round( height / 2 );
 
         this.puck.set( halfWidth, halfHeight );
-        this.handle1.set( halfWidth, height - 30 );
-        this.handle2.set( halfWidth, 30 );
+        this.handles[ 0 ].set( halfWidth, height - 30 );
+        this.handles[ 1 ].set( halfWidth, 30 );
     }
 
     get ctx(){
@@ -59,16 +59,37 @@ class GameBoard {
         return rawCtx;
     }
 
+    get handleTouchingPuck(){
+        return this.handles.find( handle => handle.puckDist < handle.radius + this.puck.radius );
+    }
+
     constructor(){
-        makeAutoObservable( this );
+        makeAutoObservable( this, {
+            handles: false
+        });
+
+        autorun(() => {
+            const { handleTouchingPuck } = this;
+            if( handleTouchingPuck ){
+                const angle = Math.atan2( handleTouchingPuck.xPuckDist, handleTouchingPuck.yPuckDist );
+                const sin = Math.sin( angle );
+                const cos = Math.cos( angle );
+                console.log( "HIT", angle )
+           //     this.puck.hit( sin, cos );
+            }
+        })
 
         autorun(() => {
             const { ctx, width, height } = this;
             ctx.clearRect( 0, 0, width, height );
 
-            this.handle1.draw();
-            this.handle2.draw();
+            for( let handle of this.handles ){
+                handle.draw();
+            }
+
             this.puck.draw();
+
+            this.puck.update();
         }, { scheduler: requestAnimationFrame });
     }
 }

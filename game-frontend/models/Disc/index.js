@@ -2,7 +2,7 @@ import { makeObservable, observable, action } from "mobx";
 
 class Disc {
 
-    radius = 10;
+    radius = 30;
     x = 20;
     y = 20;
     color = "#000";

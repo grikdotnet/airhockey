@@ -7,19 +7,21 @@ const App = () => {
     const keyDownHandler = e => {
         switch( e.key ){
             case "ArrowLeft":
-                GameBoard.handle1.move( -1, 0 );
+                GameBoard.handles[ 0 ].move( -1, 0 );
                 break;
             case "ArrowRight":
-                GameBoard.handle1.move( 1, 0 );
+                GameBoard.handles[ 0 ].move( 1, 0 );
                 break;
             case "ArrowDown":
-                GameBoard.handle1.move( 0, -1 );
+                GameBoard.handles[ 0 ].move( 0, -1 );
                 break;
             case "ArrowUp":
-                GameBoard.handle1.move( 0, 1 );
+                GameBoard.handles[ 0 ].move( 0, 1 );
                 break;
         }
     }
+
+    const mouseMoveHandler = e => GameBoard.handles[ 0 ].set( e.pageX, e.pageY );
 
     const { ref } = useResizeObserver({
         onResize: ({ height, width }) => GameBoard.setDimensions( width, height )
@@ -31,6 +33,7 @@ const App = () => {
                 className={css.canvas}
                 ref={GameBoard.initializeCanvas}
                 onKeyDown={keyDownHandler}
+                onMouseMove={mouseMoveHandler}
             />
         </div>
     );

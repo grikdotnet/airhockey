@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  router:
+    image: nginx
+    ports:
+      - 80:8080
+  app:
+    image: phpswoole/swoole:4.6-php8.0
+
